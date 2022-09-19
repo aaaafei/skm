@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>扫码结果</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+        <style>
+            html{
+                font-size:10px;
+            }
+            body{
+                font-family: sans-serif;
+                /* font-size: 10px; */
+                margin: 0px;
+            }
+            .fake-icon {
+                z-index: -99;
+                position: absolute;  display: inline-block;
+            }
+            .title-banner{
+                z-index: 9;
+                /* position: absolute; */
+                height: 3.4rem;
+                width: 100%;
+                /* top: 15rem; */
+                background-color: #fffbef;
+                color: #d96f3b;
+                font-family:"Microsoft Yahei";
+                font-size: 2.2rem;
+                line-height: 3.0rem;
+            }
+            .timer {
+                z-index: 9;
+                position: absolute;
+                height: 3.0rem;
+                width: 90%;
+                /* top: 21rem; */
+                top: calc(50.968vw); /* 0.944 * 210 / 389.109 *100 */
+                left: 1.2rem;
+                background-color: #fff;
+                color: #353e4d;
+                font-family:"Microsoft Yahei";
+                font-weight: bold;
+                font-size: calc(10.432vw); /* 0.944 * 43 / 389.109 * 100 */
+                text-align: center;
+            }
+            .timer2 {
+                z-index: 9;
+                position: absolute;
+                height: 2.0rem;
+                width: 90%;
+                top:  calc(159.0vw);
+                left: calc(4.55vw);
+                background-color: #fff;
+                color: #353e4d;
+                font-family:"Microsoft Yahei";
+                font-size: 1.8rem;
+                text-align: left;
+            }
+            
+        </style>
+    </head>
+    <body>
+        
+        <div class="fake-icon" >
+            <img src="./skm0.jpg" alt="" width="100%">
+            
+            <div class="title-banner">
+                <marquee behavior="scroll" direction="left">
+                    <div id="banner_text">
+                        若您有近7天高中风险地区旅居史（含境外）请及时信息更新和风险报备。
+                    </div>
+                </marquee>
+            </div>
+
+            <img src="./skm1.jpg" alt="" width="100%">
+
+            <div id="bottom_skm">
+                <img src="./skm2.jpg" alt="" width="100%" style="margin-top: -0.4rem;" onclick="showHs()">
+                <img src="./skm3.jpg" alt="" width="100%" style="margin-top: -0.4rem;" onclick="showXcm()">
+            </div>
+            <div id="bottom_hs" style="display: none;">
+                <img src="./hs.jpg" alt="" width="100%" style="margin-top: -0.4rem;" onclick="showSkm()">
+                <div class="timer2">
+                    <span style="font-size: calc(4.1vw);color: #949494;">检测时间：</span> 
+                    <span id="timer2" style="font-size: calc(4.5vw);font-family: SimHei;">2022-09-18 19:38:06</span>    
+                </div>
+            </div>
+            
+
+            <div id="timer" class="timer"></div>
+            
+            <div class="xcm" onclick="showXcm()"></div>
+        </div>
+
+        <script>
+            function getQueryVariable(variable){
+                var query = window.location.search.substring(1);
+                var vars = query.split("&");
+                for (var i=0;i<vars.length;i++) {
+                        var pair = vars[i].split("=");
+                        if(pair[0] == variable){return pair[1];}
+                }
+                return(false);
+            }
+
+            function bannerTxt() {
+                function format(i) {
+                    return (i < 10 ? "0" + i : i);
+                }
+            }
+            var interval = setInterval(bannerTxt, 100);
+
+            function dateFormat() {
+                var m = new Date();
+                var dateString =
+                    ("0" + (m.getMonth()+1)).slice(-2) + "-" +
+                    ("0" + m.getDate()).slice(-2) + " " +
+                    ("0" + m.getHours()).slice(-2) + ":" +
+                    ("0" + m.getMinutes()).slice(-2) + ":" +
+                    ("0" + m.getSeconds()).slice(-2);
+                document.getElementById("timer").innerText= dateString;
+            }
+            dateFormat();
+            var interval = setInterval(dateFormat, 1000);
+
+            function dateFormat2() {
+                var m = new Date();
+                var dateString =
+                    m.getUTCFullYear() + "-" +
+                    ("0" + (m.getMonth()+1)).slice(-2) + "-" +
+                    ("0" + (m.getDate()-1)).slice(-2) + " " +
+                    "12:10:06";
+                document.getElementById("timer2").innerText= dateString;
+            }
+            dateFormat2();
+
+            function showHs() {
+                document.getElementById("bottom_hs").style.display = 'inline-block';
+                document.getElementById("bottom_skm").style.display = 'none';
+                
+            }
+
+            function showSkm() {
+                document.getElementById("bottom_skm").style.display = 'inline-block';
+                document.getElementById("bottom_hs").style.display = 'none';
+            }
+            //  showHs();
+            
+            function showXcm() {
+                url = "result_xcm.html?name=" + getQueryVariable("name");
+                window.location.replace(url);
+            }
+        </script>
+    </body>
+</html>

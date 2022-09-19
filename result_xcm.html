@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>扫码结果</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+        <style>
+            html{
+                font-size:10px;
+            }
+            body{
+                font-family: sans-serif;
+                /* font-size: 10px; */
+                margin: 0px;
+            }
+            .fake-icon {
+                z-index: -99;
+                position: absolute;  display: inline-block;
+            }
+            
+            @keyframes scaleDraw {  /*定义关键帧、scaleDrew是需要绑定到选择器的关键帧名称*/
+                0%{
+                    transform: scale(1);  /*开始为原始大小*/
+                }
+                25%{
+                    transform: scale(1.1); /*放大1.1倍*/
+                }
+                50%{
+                    transform: scale(1);
+                }
+                75%{
+                    transform: scale(1.1);
+                }
+            }
+            #xcm_arrow{
+                z-index: 9;
+                position: absolute;
+                /* top: 31rem; */
+                top: calc(75.6vw); /* 0.944 * 310 / 389.109 *100 */
+                left: calc(32vw);;
+                width: 150px;
+                height: 150px;
+                background: url("./xcm_arrow.jpg");
+                background-size: 150px 150px;
+                -webkit-animation-name: scaleDraw; /*关键帧名称*/
+                -webkit-animation-timing-function: ease-in-out; /*动画的速度曲线*/
+                -webkit-animation-iteration-count: infinite;  /*动画播放的次数*/
+                -webkit-animation-duration: 5s; /*动画所花费的时间*/
+            }
+            .timer2 {
+                z-index: 9;
+                position: absolute;
+                height: 2.0rem;
+                width: 50%;
+                top:  calc(64.5vw);
+                left: calc(40.5vw);
+                background-color: #fff;
+                color: #353e4d;
+                text-align: left;
+            }
+            
+        </style>
+    </head>
+    <body>
+        
+        <div class="fake-icon" >
+            <img id="xcm0" src="./xcm0.jpg" alt="" width="100%" onclick="selectOk()">
+            <img id="xcm1" src="./xcm1.jpg" alt="" width="100%" style="display: none;" onclick="showXcm()">
+            <div id="xcm2" style="display: none;">
+                <img src="./xcm2.jpg" alt="" width="100%" onclick="showSkm()">
+                <div class="timer2">
+                    <span id="timer2" style="font-size: calc(3.5vw);color:#9d9d9f;font-family: Microsoft YaHei;">2022-09-18 19:38:06</span>    
+                </div>
+                <div id="xcm_arrow" ></div>
+            </div>
+            
+            
+        </div>
+
+        <script>
+            function getQueryVariable(variable){
+                var query = window.location.search.substring(1);
+                var vars = query.split("&");
+                for (var i=0;i<vars.length;i++) {
+                        var pair = vars[i].split("=");
+                        if(pair[0] == variable){return pair[1];}
+                }
+                return(false);
+            }
+
+            function selectOk() {
+                document.getElementById("xcm1").style.display = 'inline-block';
+                document.getElementById("xcm0").style.display = 'none';
+            }
+
+            function showXcm() {
+                document.getElementById("xcm2").style.display = 'inline-block';
+                document.getElementById("xcm1").style.display = 'none';
+                document.getElementById("xcm0").style.display = 'none';
+            }
+            
+            function showSkm() {
+                url = "result.html?name=" + getQueryVariable("name");
+                window.location.replace(url);
+            }
+
+            function dateFormat2() {
+                var m = new Date();
+                var dateString =
+                    m.getUTCFullYear() + "-" +
+                    ("0" + (m.getMonth()+1)).slice(-2) + "-" +
+                    ("0" + (m.getDate())).slice(-2) + " " +
+                    ("0" + m.getHours()).slice(-2) + ":" +
+                    ("0" + m.getMinutes()).slice(-2) + ":" +
+                    ("0" + m.getSeconds()).slice(-2);
+                document.getElementById("timer2").innerText= dateString;
+            }
+            dateFormat2();
+        </script>
+    </body>
+</html>
