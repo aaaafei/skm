@@ -58,14 +58,19 @@
                 font-size: 1.8rem;
                 text-align: left;
             }
-            
+            .csm {
+                position: fixed;
+                bottom:-6px;
+                z-index:99;
+                border-radius: 15px;
+            }
             
         </style>
     </head>
     <body>
         
         <div class="fake-icon" >
-            <img src="./skm0.jpg" alt="" width="100%" onclick="showCsm()">
+            <img src="./skm0.jpg" alt="" width="100%">
             
             <div class="title-banner">
                 <marquee behavior="scroll" direction="left">
@@ -94,7 +99,9 @@
             
             <div class="xcm" onclick="showXcm()"></div>
 
-            
+            <div class="csm">
+                <img src="./csm2.jpg" alt="" width="100%" style="margin-top: -0.4rem;" onclick="showSkm()">
+            </div>
         </div>
 
         <script>
@@ -153,11 +160,6 @@
             
             function showXcm() {
                 url = "result_xcm.html?name=" + getQueryVariable("name");
-                window.location.replace(url);
-            }
-
-            function showCsm() {
-                url = "result_csm.html?name=" + getQueryVariable("name");
                 window.location.replace(url);
             }
         </script>
