@@ -70,7 +70,7 @@
     <body>
         
         <div class="fake-icon" >
-            <img src="./skm0.jpg" alt="" width="100%">
+            <img src="./skm0.jpg" alt="" width="100%" onclick="gotoSkm()">
             
             <div class="title-banner">
                 <marquee behavior="scroll" direction="left">
@@ -100,7 +100,7 @@
             <div class="xcm" onclick="showXcm()"></div>
 
             <div class="csm">
-                <img src="./csm2.jpg" alt="" width="100%" style="margin-top: -0.4rem;" onclick="showSkm()">
+                <img id="csm_img" src="./csm/csm-ylf.jpg" alt="" width="100%" style="margin-top: -0.4rem;" onclick="showSkm()">
             </div>
         </div>
 
@@ -161,6 +161,16 @@
             function showXcm() {
                 url = "result_xcm.html?name=" + getQueryVariable("name");
                 window.location.replace(url);
+            }
+
+            function gotoSkm() {
+                url = "result.html?name=" + getQueryVariable("name");
+                window.location.replace(url);
+            }
+
+            window.onload = function() {
+                var csm = getQueryVariable('name');
+                document.getElementById("csm_img").src = './csm/'+csm+'.jpg';
             }
         </script>
     </body>

@@ -97,6 +97,11 @@
             
         </div>
 
+        <div id="csm_options" style="height: 100%; width: 100%;display: none;font-size: 25px;;">
+            <button onclick="gotoCsm('csm-ylf')">玉澜府</button>
+            <button onclick="gotoCsm('csm-sjk')">苏交科</button>
+        </div>
+
         <script>
             function getQueryVariable(variable){
                 var query = window.location.search.substring(1);
@@ -157,9 +162,21 @@
             }
 
             function showCsm() {
-                url = "result_csm.html?name=" + getQueryVariable("name");
+                if (document.getElementById('csm_options').style.display == 'block') {
+                    document.getElementById('csm_options').style.display = 'none';
+                }else if (document.getElementById('csm_options').style.display == 'none') {
+                    document.getElementById('csm_options').style.display = 'block';
+                }
+            }
+
+            function gotoCsm(name) {
+                // var sel_index =  document.getElementById('csm').selectedIndex ;
+                // var val = document.getElementById('csm').options[sel_index].value;
+                url = "result_csm.html?name=" + name;
                 window.location.replace(url);
             }
+
+            
         </script>
     </body>
 </html>
