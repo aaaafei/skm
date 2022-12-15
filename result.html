@@ -50,6 +50,7 @@
                 position: absolute;
                 height: 2.0rem;
                 width: 90%;
+                /* top: calc(140vw);  */
                 top:  calc(159.0vw);
                 left: calc(4.55vw);
                 background-color: #fff;
@@ -84,6 +85,7 @@
             <div id="bottom_hs" style="display: none;">
                 <img src="./hs.jpg" alt="" width="100%" style="margin-top: -0.4rem;" onclick="showSkm()">
                 <div class="timer2">
+                    
                     <span style="font-size: calc(4.1vw);color: #949494;">检测时间：</span> 
                     <span id="timer2" style="font-size: calc(4.5vw);font-family: SimHei;">2022-09-18 19:38:06</span>    
                 </div>
@@ -97,9 +99,10 @@
             
         </div>
 
-        <div id="csm_options" style="height: 100%; width: 100%;display: none;font-size: 25px;;">
-            <button onclick="gotoCsm('csm-ylf')">玉澜府</button>
-            <button onclick="gotoCsm('csm-sjk')">苏交科</button>
+        <div id="csm_options" style="height: 100%; width: 100%;display: none;">
+            <button style="font-size:20px;" onclick="gotoCsm('csm-ylf')">玉澜府</button>
+            <button style="font-size:20px;" onclick="gotoCsm('csm-sjk')">苏交科</button>
+            <button style="font-size:20px;" onclick="gotoCsm('csm-etyy')">儿童医院</button>
         </div>
 
         <script>
